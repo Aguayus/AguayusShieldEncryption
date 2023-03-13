@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "70592dc1-22f5-4253-bc5f-338989440e4f",
+		"name": "Aguayus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8181623"
+	},
+	"item": [
+		{
+			"name": "AES",
+			"item": [
+				{
+					"name": "Generate Key",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.aguayus.com/v1/AES/key?size=256",
+							"protocol": "https",
+							"host": [
+								"api.aguayus.com"
+							],
+							"path": [
+								"v1",
+								"AES",
+								"key"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "256"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Encrypt",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\":\"A?D(G+KbPeShVmYq\",\r\n    \"text\":\"Text to Encrypt\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.aguayus.com/v1/AES/Encrypt",
+							"protocol": "https",
+							"host": [
+								"api.aguayus.com"
+							],
+							"path": [
+								"v1",
+								"AES",
+								"Encrypt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Decrypt",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\":\"A?D(G+KbPeShVmYq\",\r\n    \"text\":\"Vm0wd2QyUXlVWGxWV0d4V1YwZDRWMVl3WkRSV01WbDNXa1JTV0ZKdGVGWlZiVFZyVmxVeFYyTkljRmhoTVhCUVZqQmFTMk15U2tWVWJHaG9UV3N3ZUZadGNFZFRNazE1VTJ0V1ZXSkhhRzlVVjNOM1pVWmFjVkZ0UmxSTmF6RTFWVEowVjFaWFNraGhSemxWVmpOT00xcFZXbUZrUjA1R1drWlNUbUY2UlRGV1ZFb3dWakZhV0ZOcmFHaFNlbXhXVm1wT1QwMHhjRlpYYlVaclVqQTFSMWRyV2xOVWJVWTJVbFJHVjFaRmIzZFdha1poVjBaT2NtRkhhRk5sYlhoWFZtMHhORmxWTUhoWGJrNVlZbFZhY2xWcVFURlNNV1J5VjJ4T1ZXSlZjRWRaTUZaM1ZqSktWVkpZWkZwbGEzQklWbXBHVDJSV1ZuTlhiV2g5eDEzVDV0ZnFtVXZzWWxob2IxWnRNWGRVTWtsNVVtdGthbEp0VWxsWmJGWmhZMnhXY1ZGVVJsTk5WMUo1VmpJMWExWXdNVVZTYkdSYVRVWmFNMVpxU2t0V1ZrcFpXa1p3VjFKV2NIbFdWRUpoVkRKT2MyTkZhR3BTYkVwVVZteG9RMWRzV1hoWGJFNVRUVmQ0V1ZWdGRHdFdNV1JJWVVac1dtSkdXbWhaTVZwaFpFZE9ObEp0ZUZOaVNFSmFWMnhXYjJFeFdYZE5WVlpUWWtkU1lWUlZXbUZOTVZweFUydDBWMVpyY0ZwWGExcDNZa2RGZWxGcmJGaFhTRUpJVmtSS1UxWXhXblZVYkdocFZqSm9lbGRYZUc5aU1rbDRWMWhvWVZKR1NuQlVWM1J6VGtaYVNHUkhkRmRpVlhCSVZqSjRVMWR0U2tkWGJXaGFUVlp3ZWxreU1VZFNiRkp6Vkcxc1UySnJTbUZXTW5oWFdWWlJlRmRzYUZSaVJuQnhWV3hrVTFsV1VsWlhiVVpzWWtad2VGVXlkREJXTVZweVYyeHdXbFpXY0hKWlZXUkdaV3hHY21KR2FGaFRSVXBKVm10U1MxVXhXWGhYYmxaVllrZG9jRlpxVG05a2JGcEhWbTA1VWsxWFVsaFdNV2h2V1ZaS1IxTnVRbFZXYkhCWVZGUkdVMVp0UmtoUFZtaFRZbFpLU2xkV1ZtRmpNV1IwVTJ0b2FGSnNTbGhVVmxwM1YwWnJlRmRyZEdwaVZrcElWbGQ0YTJGWFJYZGpSV3hYWWxoQ1RGUnJXbEpsUm1SellVWlNhRTFzU25oV1YzUlhXVlpaZUZkdVJsVmhNRFZaVlcxNGQyVkdWblJrU0dScFVqQndWMVl5ZEhOWGJGcFhZMGhhVjJGcmNFeFdha1pQWTIxS1IyRkdhRlJTVlhCS1ZtMTBVMU14VlhoWFdHaFlZbXhhVmxsclpHOWpSbHB4VTIwNWJHSkhVbGxhVldNMVlWVXhXRlZ1Y0ZkTlYyaDJWMVphUzFJeFRuVlJiRlpYWWtoQ1dWWkdVa2RWTVZwMFVtdG9VRlp0YUZSVVZXaERUbFphU0dWSFJtcE5WMUl3VlRKMGIyRkdTbk5UYkdoVlZsWndNMVpyV21GalZrNXlXa1pPYVZKcmNEWldhMk40WXpGVmVWTnVTbFJpVlZwWVZGYzFiMWRHWkZkWGJFcHNVbTFTZWxsVldsTmhWa3AxVVd4d1YySllVbGhhUkVaclVqSktTVlJ0YUZOV1ZGWjJWbGN4TkdReVZrZFdXR3hyVWpOU2IxbHNWbmRXTVd4MVkwVjBWMkpHYkRaWlZWSlBWMjFGZVZWclpHRldWMUpRVld4YWEyTXhjRWhpUm1oVFZsaENTMVp0TVRCVk1VbDVVbGhvV0ZkSGVGWlpWRVozWVVaV2NWTnRPVmRTYkVwWlZHeGpOVll4V25SVmJHaFhWak5OTVZaWGMzaFhSbFoxWTBaa1RsWXlhREpXYWtKclV6RmtWMVp1U2xCV2JIQnZXVlJHZDFOV1draGxSMFphVm0xU1IxUnNXbUZWUmxwMFlVWlNWVlpXY0dGVVZscGhZekZ3UlZWdGNFNVdNVWwzVmxSS01HRXhaRWhUYkdob1VqQmFWbFp0ZUhkTk1XeFdWMjVrVTJKSVFraFdSM2hUVmpKS2NsTnJhRmRTTTJob1ZrUktSMVl4VG5WVmJFSlhVbFJXV1ZaR1l6RmlNV1JIVjI1U2FtVnJXbGhVVm1SVFpXeHNWbGRzVG1oU1ZFWjZWVEkxYjFZeFdYcFZiR2hZVm14d1lWcFZXbXRrVmtwelZtMXNWMUl6YURWV01XUXdXVmRSZVZaclpGZGliRXB5Vld0V1MySXhiRmxqUldSc1ZteEtlbFp0TURWWFIwcEhZMFpvV2sxSGFFeFdNbmhoVjBaV2NscEhSbGROTW1oSlYxUkplRk14U1hoalJXUmhVbXMxV0ZZd1ZrdE5iRnAwWTBWa1dsWXdWalJXYkdodlYwWmtTR0ZHV2xwaVdHaG9WbTE0YzJOc1pISmtSM0JUWWtad05GWlhNVEJOUmxsNFYyNU9hbEpYYUZoV2FrNVRWRVpzVlZGWWFGTldhM0I2VmtkNFlWVXlTa1pYV0hCWFZsWndSMVF4V2tOVmJFSlZUVVF3UFE9\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.aguayus.com/v1/AES/Decrypt",
+							"protocol": "https",
+							"host": [
+								"api.aguayus.com"
+							],
+							"path": [
+								"v1",
+								"AES",
+								"Decrypt"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RSA",
+			"item": [
+				{
+					"name": "Generate Keys",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.aguayus.com/v1/RSA/keys?size=2048",
+							"protocol": "https",
+							"host": [
+								"api.aguayus.com"
+							],
+							"path": [
+								"v1",
+								"RSA",
+								"keys"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "2048"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Encrypt",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\": \"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyeOffXQPvyLzxQ1tQZ93v5PplJWEukdaU/rWASU++PQO/yCSwj1jjnQNQCXTQPs1qXAKizBnf9BWYjmlXZzc3m1ODBDtCJcqGYEaguZQNPkh7n8yf8VToEZE5pEkZmDuO53EPKoFdWw0pH09dHjhvyb8yQPXOU5UWq9dSL3rWiIfWkcfZyjkb/DI3p78hsOHM6w4aS6OlWKsF5iRDU7EftTorzG7Vbrkmc31iYtEUqKmZpui76+qKMCA8sDYkoTSbmV+sophEIUvsSF44U2AS98uGo1kEhjRo4+Cm91AZ6BS63KIJ5SXKqEEiFq0IavZKDrBdHVWPjlJMih36FA6VQIDAQAB\",\r\n    \"text\":\"Text to Encrypt\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.aguayus.com/v1/RSA/Encrypt",
+							"protocol": "https",
+							"host": [
+								"api.aguayus.com"
+							],
+							"path": [
+								"v1",
+								"RSA",
+								"Encrypt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Decrypt",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\":\"MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDJ4599dA+/IvPFDW1Bn3e/k+mUlYS6R1pT+tYBJT749A7/IJLCPWOOdA1AJdNA+zWpcAqLMGd/0FZiOaVdnNzebU4MEO0IlyoZgRqC5lA0+SHufzJ/xVOgRkTmkSRmYO47ncQ8qgV1bDSkfT10eOG/JvzJA9c5TlRar11IvetaIh9aRx9nKORv8MjenvyGw4czrDhpLo6VYqwXmJENTsR+1OivMbtVuuSZzfWJi0RSoqZmm6Lvr6oowIDywNiShNJuZX6yimEQhS+xIXjhTYBL3y4ajWQSGNGjj4Kb3UBnoFLrcognlJcqoQSIWrQhq9koOsF0dVY+OUkyKHfoUDpVAgMBAAECggEAYGiSgRYrbtsCDdeblPrR9Gpt4MaF2263c+MUzvc6WygxASRM8PTf1ecVbMyjVSShO4iFgHJc+mxC1CUzEsEVuCH6Y0ix6KhHMma0gk35f1J5IascMmfIx4DG5lPpTfp7yXxNeaq3cJt7iBFGh5gyNVYo4NU0sej131he852+BgvsPlfsqF+qi6gEEaJ/KaA+WEnjPZygaolZU9Z2IwnjJ4CvGq+6ktSwZt6IoFIknT8hoM+WgALUGC0TP0kZmn3gPjl1y1w35JdBQjfYcu0YYXqMyMph3oQH3l9KvVxvn/n9ZxfIN98j9RaU226oTpQwMTlxIBbk61bAF8F9D/gbAQKBgQDeULO+FvWUe/DIWyvq9s52n1gTls3ocQuSZoacCYwBrwauTmC7wp5hKx9voJVVUQRPr8iEn6ymrraw8nbAcQ6F1oZHbjEggOalPWHAd16ImzlPyyq+9nA6Q62VOSC5IqYAFT9TOYvPn3eHPT3HloYonKy5jqQdBwFlh35pxVbQxwKBgQDoep8RvHe9A42/IDBxylWWqTO46nXeGYc7e0fMO8bmAcUksKmPhWAFTQ3wMYK4LEEpbi08BoMcYnhxZ7bIQ9J7N9umNpcAKWjVG1S0Zjk26pp/AKsQnjpWs1Mxu2n32uMMai6hsYICAxebxZZZdTArhwausOBdUfQAFGbf7J34AwKBgBhshVK88v39H9bjLVADDWu61dJRHw4KXVsYKHG8GsWUlQdRVQ9Lslq6ghmhasaUwASBK2ZmpHErgKav/Jvnz9CkYNw4Hu2TO8OrmrGqa5hWdVVu3KNeL7Y2+TsLq6yrQdGAhBSAnfuRaXBSKhdjUhnkHJXGNgF6Y4zj9d9o7sDBAoGBAOJDnhgcD4n2MHppcNz/KagWDFIYWBmPTRA2X13GfEIWTPL1wkH+dMMUCNHSzkBESjNxmTMHv4nbyQ/O+pYVdIEaj3xJO1Qb+X0YOavOpjbtxOqBEv18kpkZtYn8txlVf4/wtGwJINime87PUxLEPNrQc0+ItQX+onWFZc7hM6pTAoGBAJPk48plondZzUVzaqwxrIUG+KxQ9uMKgGhnE23TMbbL5KNRUTcXe2e+UdoAj3niiJkGhTZ+IXlMShkTq0q90neIGb6EmW63cIArZu6voOz1onu9kV1ibzdDBUI99F9ts5p8DpR6lWv+Jn9VThzrRzr3VMS6P7IjWyHg2KguHq2P\",\r\n\r\n    \"text\":\"Vm0xNGEyUXhSWGRPVldoV1YwZDRXRmx0ZEdGV01XeDBaVWRHYUZKc1dubFhhMUpUVkcxS1NWRnNaRmRXTTFKeVZsUkdTMk14VG5WalJuQlhWakZGZDFZeFdtRlRNVWw0Vkc1V1lWSnRVazlXYWtwdlYxWmtXRTFVVW1oTmJFcEpWbTEwYzFVeVJqWldiRkpYWVd0RmQxUlhlR3RXVmxKMVdrZHNUbFpZUWxsV2JHTXhWakpHUjFOWWJHeFRSVnBZV1d0YVlVMHhWbFZTYlhSWVVqRmFTRlpITVhOaFZrcFhZMFp3VjFJemFGUldha3BIWXpGa1dXRkdhR2hpUm5CYVYxZDBhMkl4V2tkVmJHUllZa1UxY1ZacVFtRlRSbXh5VjJzNWFWSXdjRnBaVlZaclZqSkdjbUpFVWxwbGEzQlRXa1JCZUZac2NFZFZiV2hPVWtaYWIxWXllR0ZpTVZGM1RVaG9ZVkpzV2xaWlZFRXhWVEZTVjFadFJteGlSbHBaVkd4a01HRldTblJWYTJSV1RXNW9lbFl5YzNoWFJsSnhWV3hhYUdFelFrMVdWM2hyVWpGSmVGSnVUbFppUjJoVVdsY3hiazFHV25Sa1JrNVNUVlZzTkZadE5VOVhSMHB5VGxaU1YwMUdXak5XYWtaelkyeHNObFpyT1dsVFJVcFpWakowWVdFeFdsZFRXR1JxVW14d1YxbHNhRU5oUmxsM1YyMUdWMVl3Y0VkYVZWcGhZVmRLY2xOdWJGZGlXRUpNVmxSQk1XUkdTbkpoUlRWWFRUQktkbFpHV21GWGJWWnpXa2hLVjJKRk5XOVVWM2hMWld4YWRFNVZkRmROYTFreVdXdG9UMVp0UlhoWGJVWlZWak5vTTFadGVGZGpiRkowWVVkc1UySnJSalJXYkZKTFpERkZlRmRzWkZWaE1YQlpXVlJPYjFkR2JGVlNiSEJPVW0xNFYxWnNVa2RoYkVsNFUydGFWMUl6YUV4V1IzTjRVMVpHYzFSc2FHbFNia0o1VjFaU1MxVnRWbGRUYmtwcFVteHdjRlZ0ZUhkWFJtUnpXa1JTYTAxRVZucFdiVFZQV1ZaS1ZXSkhSbGRpUmtwWVZtcEdZVmRIVWtaa1JsWlhUVlp3TlZaWGVHOWpNV3hYVTI1U1ZtSnNXbFpXYWs1T1pVWndSbGR0Um1wTlZsb3dXVlZhVDFSck1VWlhWRXBYWWtkUmQxWnFSbUZqYXpWWFlVWmFhRTF0YUZCV2JYaGhXVmRPYzFkdVNsaGlWVnBQVkZaa1UyVnNaSEpXYlhSb1VqQndSMVJzV25kV2F6RjFVV3hDV0Zac2NFeFZha3BQVW1zMVYxcEdUbGROYldnMVZqSjRZVmxXVlhsVWJrNVZZbXRhVTFsWWNGZFhSbEpZWTBoS2JHSkdiRFZhVldRd1lWVXhjbU5GYUZoaE1WcG9XVlZhUzFKc1RuTlZiSEJwVW01Q05sWkdVa2RoTWxKWVZHdGFZVkpVVmxoWmJYUkxVMnhhUjFkdE9WcFdiRlkwVmtkNngwNU43amVSb1hWMGEyRnNTalppUm1oV1RVZG9SRmxWV25OalZrcDBVbTEwVjJFeGNEVlhWbFpoVmpKR1NGSnFXbE5YU0VKWVdXeG9VMk5XVWxkWGJFNXJVbXR3ZWxscldtOWhSVEZ6VTJzMVYxSnRVVEJYVmxWNFZqSk9SbGRzV21saGVsWldWa1pXVTFJeFpGZFdXR3hyVWtaS1ZsUldXbmRsYkd0M1YyeGtXbFpzY0hwV01uUTBWbXhhUm1OR2FGZE5WbkF6VlcxNGEyTXhjRWRVYkdScFlUQndWMVp0ZEdGWlYwVjRVMWhvVkdKSFVsaFpWRW8wVm14c2RHUkZkR3BXYkZZelYydFNVMkpHU25SVmFrSmhVbFpWTVZaRVJscGtNV1J5WVVaYVYwMHlhRVZXYWtwNlpESlJlRnBHVmxKaVJuQnZWRlphY21ReFdrZFdiRnBPVmpBMWVsWkhOVmRWTWtwR1RsaENXbUpZVWtoVWJGcGFaVVpXY2s5V1NrNVdNVW8yVm10a05GbFdaRWhUYms1VVlrZFNWMWxYZEV0TmJGSldWMjVPYTFZd1dUSldiWGhUWVZaS2RWRnJaRmROYmxKWVZYcEtSbVZHWkhWVmJYUlRVbTVDV1ZaWE5YZFNNREI0VjJ4YVdHSklRbk5WYlhoaFpVWldkR042Um1oU1ZFWktWVmQwYTFkR1drWmlla0pXVFdwR1ZGbDZSbUZYVjBwSFlVZG9UbUpGY0dGV01WcFRVVEpSZUZOclpGaGlSMmhQVm10Vk1WUXhVbGhrU0dSWVVteHdXVnBGVWxOaFJURlhZMGhzVm1KSGFISldha1pMVmpKT1NGSnRSbGRpVmtwTlZtMXdSMVV5VG5KT1ZtUlVZa2RTVkZadGVISmtNVnB6Vld0T1YwMVdSalJXTW5oaFZVWmFWMk5HYUZwV1JWb3pWbXhhVTFaV1RuTlViRXBPVm01Q1YxWnJZekZVTVZGNVUyeGtVMkZzU21GV2JGcFdaVVphYzFwRlpHcGlWVFZIVmtkNFlWVXlTa1pYV0hCWFZsWndSMVF4V2tOVmJFSlZUVVF3UFE9\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.aguayus.com/v1/RSA/Decrypt",
+							"protocol": "https",
+							"host": [
+								"api.aguayus.com"
+							],
+							"path": [
+								"v1",
+								"RSA",
+								"Decrypt"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,418 @@
+openapi: 3.0.0
+info:
+  title: Aguayus Shield Encryption
+  description: |
+    ## Description
+    - Aguayus Shield Encryption is a process to obfuscate the result text of an encryption. (Looks like base64 but is more than that)
+    - Aguayus Shield Encryption modify the output of encryption process like AES or RSA, that means that the Key CAN NOT BE RECOVERED BY BRUTE FORCE
+    - Aguayus Shield Encryption has random output length that means that cannot be predictable
+    - Aguayus Shield Encryption is not based on maths because the maths is the way to calculate the key
+
+  version: 1.0.0
+servers:
+  - url: https://api.aguayus.com
+tags:
+  - name: AES
+  - name: RSA
+paths:
+  /v1/AES/key:
+    get:
+      tags:
+        - AES
+      summary: Generate Key
+      parameters:
+        - name: size
+          required: true
+          in: query
+          schema:
+            type: integer
+          example: '256'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  important:
+                    type: string
+                    example: My resources for the hosting are limited. Thanks for your understanding
+                  aesKey:
+                    type: string
+                    example: 'MQtGoaFaEORVeY3xepquXfTUwqMiHmenPUo69M02Y3ky'
+                  message:
+                    type: string
+                    example: 'The key size generated is: 256 bits'
+                  zulu:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        description:
+                          type: array
+                          items:
+                            type: string
+                          example:
+                            [ "Thanks for trying and testing Aguayus Shield Encryption!!!",
+                              "Aguayus Shield Encryption is a process to obfuscate the result text of an encryption",
+                              "Aguayus Shield Encryption modify the output of encryption process like AES or RSA, that means that the Key CAN NOT BE RECOVERED BY BRUTE FORCE",
+                              "Aguayus Shield Encryption has random output length that means that cannot be predictable",
+                              "Aguayus Shield Encryption is not based on maths because the maths is the way to calculate the key" ]
+                        challenge:
+                          type: array
+                          items:
+                            type: string
+                          example:
+                            [ "Aguayus Shield Encryption Challenge is a NON-PROFIT CHALLENGE",
+                              "This is a text that was encrypted with 128Bits AES Key and obfuscate with Aguayus",
+                              "If you can broke just follow the instructions there are inside the text:",
+                              "Vm0xd1IxbFhSWGxWV0doV1ltdHdUMVl3V2t0WFJteFZVbTVrVjFKdGVGWlZiVEZIVm14S2MxTnNaRmROYm1ob1dXdGFZV014VG5WaFJscFhaV3hhVVZkV1VrZFpWMDUwVkd0YWFsSnRVazlaVjNSYVpXeGFkRTFVVW1oTlZXdzFWa2QwYzJGc1NYZFhiRkpoVmpOb1lWcFhlR0ZqYkdSMFVteHdWMkpXU2xsV01uUnZWakZaZVZKWWNHaFNWR3hYV1ZkMGQyUnNXWGhYYlVacVZtdHdNRlF4V21GaFZscHlZak5rVjJFeVRYaFZWRXBHWlVaT2NscEdVbWxoTVhCWFZtMDFkMUl4V2tkV2JGWlRZbTFTVlZWcVJtRlRiR1J5VjIwNWFGSXhXbnBXYkdoelYwWmFjMWR1Um1GV1ZuQllXVEp6ZUZkV1duUmhSbEpUVFRKb1dWWnJXbGRaVmsxNFUxaG9hRTB5ZUU5V2JYTXhWMVphZEUxV1RsZGlSbkF3VkZab2EyRkdXbk5qU0d4YVRVZFNkbFpxU2tkamJVNUZWR3hhYkdFeGNGVldiWEJMVkRGSmVHTkZhR2hTYXpWUFZXMDFRMlJzV25STldHUlNZWHBHVjFSV1ZtdFhSMHB5WTBaa1dsWkZSWGhXYkZwelkyeGtjbVJHWkU1V2Exa3dWakowYWs1WFJsZFRia3BQVmxkNFdGWnRNVzlrYkZsNVpVZEdVMkY2VmxkWlZWcHJWVEF3ZVdGSE9WZFdla0kwVmtSR1MxWXhaSFZUYkVKWFRXMW9kbFpHV21GWGF6RkhWMjVTVGxaRlNtOVVWbVEwVjFaYWRHVkhSbFpTYkhCWVdUQmtiMWxXV1hwVmJXaFhWbFp3YUZsNlJuZFNWbEp5VGxaT2FWSnVRbGhXYkdONFRVVXhTRkpZYUZSaWF6VnhWVEJvUTFkR1ZuVmpSbVJWVW0xNGVWWXlNVEJXUmtsM1YydG9WbUpZYUdoV2FrWkxWbTFPUjJKR1pHaE5WWEJKVmxkd1MxUXlUbkpPVm1SaFVqSm9WRmxZY0ZkVlJscEhXa1JTVkUxV1ZqUlhhMXByVm0xRmVsVnNRbFpoYTBWNFdsWmFVMk15UmtaYVJtaFRZbFpLU2xkc1ZtdFNNVnBYVjJ4b2FGTkdjRlpXYWs1dlRURldjVkp1WkZSV2JFcDZWako0YTJGV1NsZGlSRnBYWVd0dmQxWnFRVEZUUmtwWllrWlNhVkp1UWxGV2FrSnJWVEZzVjFWc2FHcFNWMUp2VlcweE1FNVdVbGRXYm1ScFVqQndTbFZYZEhkWGJVVjRWMVJDV21FeVVreFZiWGhoWTFaU2MxcEdUbWxUUlVwYVZteFNTMlZyTVZkYVJXUlVZbXMxV0ZsclZuZGpSbXh5WVVWT2JGSnNjRWhXVjNRd1Ztc3hjMWRyYUZwTlJscHlWbXBLUzFOR1ZuSlBWbFpYVm10d05sWnRNVFJaVjFKSVZHdGtWV0pIVWxSWlZFNURXVlphVjFwSVpGVk5WbkJZVmpGb2QyRkdUa1pqUm1oWFlrWndWMXBWV2xwbFJtUnlaRVpvVjAxR2NFaFdSbHBXVFZaU2MxZHNiRkppUjFKWVdXeG9RMVJHY0VWU2JGcHNVbXhLZWxZeWN6VldSazVHVTJ4d1dGWXphRlJWYWtaWFVqRmtXVnBHWkdoTk1VcDZWbTB4TkZsWFZrZFdXR3hQVmpCYWIxUlhkSGRUVmxwWVpFZDBWMkpWY0ZaVlYzQlRWakF4ZFZScVRtRlNSVnBRV1hwR2QxSXhWbkpPVlRWT1VsaENUMVp0TVRCWlZteFhZa1phVDFkR1NsVlpWRW8wWTBaV2RHUklaRmhXYkZwNFZXMTBZV0pHU25SVmJuQllWa1UxZGxsWGMzaFNWa3AxWTBaa1YyVnNXazFXYlhSclV6Sk5lRlJ1VW1oU2IyeDA1bzBNdGJmV0NIQndWVzEwZDFkV1duUmtSMFpZWWxaYVYxUnNXbUZXUjBZMlZteG9WMDFHVlhkVVZWcGhZMVpPY1ZWdGFFNWhNWEEyVmxSSk1WVXhWa2RUYTFwVVlrWndWMVJWWkc5U1JtdDVaVVphYkZZeFdrZGFSV1IzWVZaS1ZWWnFXbGRpUjA0MFdXcEdWbVZHWkhOV2JFNW9Za1p3V1ZkWGVHOWlNbEp6VjJ4b2FtVnJXbFJVVm1oRFUyeGFTRTFYT1ZaTlJFWXhXVlZvYjFZeVNsbFJhM2hYVmtWYVVGbDZSbXRqYkdSMFlVWk9hV0V3Y0RWV2ExcGhXVlpzVjFwR1pHbFNiSEJZVmpCa2IxZEdWblJsU0U1T1RWWktlbFpzYUc5V01ERlhZbnBLVm1KWWFGUldha0Y0VmpKT1IyRkhSbE5XYmtKdlYydFdZVk15VWtkVGJrcFBWbXMxVDFSWGN6Qk5SbHAwVFVob1QxSXdiRFJXYkdoelZtMUtTRlZzVWxwaVdGSXpWakZhYzJOc2NFaFBWMnhPVm10d1dWZFdWbGRVTVZweVRWWmtWMkZzU21GV2JHUnZWVVphU0dWR2NHdE5SRVpXVmtkNFYyRldTblZSYkZaWVZteGFjbFZxUVRGa1JrcFpZMGR3VTJKSVFsbFdWM2hoWkRGV1IxcElUbUZUU0VKUFZtMTRkMWRHV1hsbFJtUlhWakJ3U2xWWGN6VldiVXBIWTBSS1ZWWnNjR2hXTUdSVFVtczVWazVXVG1oTk1FcFpWbXRTUjFZeGJGZFhhMmhVWWtkNFYxbHJaRk5XYkZweVZsUkdVMUpzY0ZkV01qVkxZa1pLZEdSNlNsZGlXR2gyVmxSQmVGSldXbkZWYkdSWFlsVXhORlp0Y0VkVk1rMTRZMFZhV0dKSGFIQlpWRUozVjFaYVIxZHRSbXROVmxwSVdUQldiMVJzV2xWaVNFcFhZbFJXUkZVd1dtRmtSVEZaVkcxb1UxWkZXa3RXVm1Rd1ZqRlplRmRxV2xKWFIyaFpWbTB4VTFJeGNFVlRiRXBzWWxWYVNWVnRlRk5WTWtwSlVXeHdWMkV4Y0doWlZFcEdaREExV1ZSc1pHbGhNMEpZVjFkNFYxbFhTWGhYYmtaU1lsVmFXRmxyV25kTlJuQldZVWQwV0ZJd2NGZFpNRlpyVjJ4a1NWRnJhRmRpV0dob1dYcEdUMk50UmtkWGF6VlhZbXRLV2xZeFVrdGxhekZYVjFob1ZXSnJOWEZWYWtwdlYwWldjVk5zU2s1U2JIQjVWakl4ZDFSc1duSldhbEpXVFZkb2NsWkVSazlUUmxaelYyeGtUbEl5YUVWWFYzQkhWakpPVjFOdVZtRlNNMUpQVm1wR1MwNVdXbkZUV0doT1VqQmFlbFl5TlU5aGJFcEdVMjFvVmsxSGFFUldSVnBoVWxaS2RHUkdVbE5OUm5CTFZsWmtORmxYUmxoVGJrcFVZV3R3V1ZscldtRmhSbHBWVTJzNWFrMXJOVWRaYTFwcllWWkplV0ZJV2xkU2JWSXpXVEp6ZUZJeFpGbGlSM0JUVmxSV2VGWkdWbE5TTWxaellraEdWV0p0VW05V2JYUjNaVlpTYzFwRlpGZE5hM0JKVmxjMVlWWnNXa1pYYkZKYVRXNW9jbGt5ZUZOak1WcHpWR3MxVTJKclNrcFdiVEUwWVcxV1NGVllhRmhpYTNCUFZqQmFZVlV4YkZoa1JYUllWbXh3ZUZaSGVFOWhiRnAwWkVSV1lWWlhhRXhaYTFwS1pERmtWVk5zWkZkbGExb3lWbXBDWVZOdFZsaFNhMnhoVW0xb1dGVnNaRE5OUm1SeVdUTm9WMDFXYkRWVmJHaDNZVVpLY21OSE9WcFhTRUpZV1dwR1lXUkhWa2hQVmxwT1ZtNUNTVll5ZEc5VE1WbDRXa1ZvVm1Kck5XRldNR2hEWld4V2NWSnVaRk5pUjNjeVZXMTRkMVl3TVVkalJtUllWbTFvTTFWcVJuTldNVTV5VjJ4b2FWSXlhRmxXVjNSWFpERk9SMVpZWkdGU2JWSlVXV3RhZDJWc2EzZFhiWFJWWWtad1dsVlhNVWRXTURGMVZXMW9XbUZyV25wV2FrWlBWMVp3UjFGc1pHbFdhM0IyVm14a2QxUXhSWGhhUm1ScFVtMTRjVlZzWkZOamJGSlhWMjVrVGxKdVFrZFdNakV3VmxkS1ZtTkZhRlpOYmxJelZtcEdTbVZzVm5OVmJHUlRUVEEwTUZaVVFtRldNVnBYVkc1T2FsSXllRmxWYWtwdlZGWlplV1JIZEU5U2JGWTBWako0WVZSc1dsZFhhemxXWVRGS1ExUXhSVGxRVVQw" ]
+                  statusCode:
+                    type: integer
+                    example: '200'
+
+
+  /v1/AES/Encrypt:
+    post:
+      tags:
+        - AES
+      summary: Encrypt AES
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                key: A?D(G+KbPeShVmYq
+                text: 'Text to Encrypt'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  important:
+                    type: string
+                    example: My resources for the hosting are limited. Thanks for your understanding
+                  text:
+                    type: string
+                    example: Encrypted Text
+                  zulu:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        description:
+                          type: array
+                          items:
+                            type: string
+                          example:
+                            ["Thanks for trying and testing Aguayus Shield Encryption!!!",
+                             "Aguayus Shield Encryption is a process to obfuscate the result text of an encryption",
+                             "Aguayus Shield Encryption modify the output of encryption process like AES or RSA, that means that the Key CAN NOT BE RECOVERED BY BRUTE FORCE",
+                             "Aguayus Shield Encryption has random output length that means that cannot be predictable",
+                             "Aguayus Shield Encryption is not based on maths because the maths is the way to calculate the key"]
+                        challenge:
+                          type: array
+                          items:
+                            type: string
+                          example:
+                            [  "Aguayus Shield Encryption Challenge is a NON-PROFIT CHALLENGE",
+                               "This is a text that was encrypted with 128Bits AES Key and obfuscate with Aguayus",
+                               "If you can broke just follow the instructions there are inside the text:",
+                               "Vm0xd1IxbFhSWGxWV0doV1ltdHdUMVl3V2t0WFJteFZVbTVrVjFKdGVGWlZiVEZIVm14S2MxTnNaRmROYm1ob1dXdGFZV014VG5WaFJscFhaV3hhVVZkV1VrZFpWMDUwVkd0YWFsSnRVazlaVjNSYVpXeGFkRTFVVW1oTlZXdzFWa2QwYzJGc1NYZFhiRkpoVmpOb1lWcFhlR0ZqYkdSMFVteHdWMkpXU2xsV01uUnZWakZaZVZKWWNHaFNWR3hYV1ZkMGQyUnNXWGhYYlVacVZtdHdNRlF4V21GaFZscHlZak5rVjJFeVRYaFZWRXBHWlVaT2NscEdVbWxoTVhCWFZtMDFkMUl4V2tkV2JGWlRZbTFTVlZWcVJtRlRiR1J5VjIwNWFGSXhXbnBXYkdoelYwWmFjMWR1Um1GV1ZuQllXVEp6ZUZkV1duUmhSbEpUVFRKb1dWWnJXbGRaVmsxNFUxaG9hRTB5ZUU5V2JYTXhWMVphZEUxV1RsZGlSbkF3VkZab2EyRkdXbk5qU0d4YVRVZFNkbFpxU2tkamJVNUZWR3hhYkdFeGNGVldiWEJMVkRGSmVHTkZhR2hTYXpWUFZXMDFRMlJzV25STldHUlNZWHBHVjFSV1ZtdFhSMHB5WTBaa1dsWkZSWGhXYkZwelkyeGtjbVJHWkU1V2Exa3dWakowYWs1WFJsZFRia3BQVmxkNFdGWnRNVzlrYkZsNVpVZEdVMkY2VmxkWlZWcHJWVEF3ZVdGSE9WZFdla0kwVmtSR1MxWXhaSFZUYkVKWFRXMW9kbFpHV21GWGF6RkhWMjVTVGxaRlNtOVVWbVEwVjFaYWRHVkhSbFpTYkhCWVdUQmtiMWxXV1hwVmJXaFhWbFp3YUZsNlJuZFNWbEp5VGxaT2FWSnVRbGhXYkdONFRVVXhTRkpZYUZSaWF6VnhWVEJvUTFkR1ZuVmpSbVJWVW0xNGVWWXlNVEJXUmtsM1YydG9WbUpZYUdoV2FrWkxWbTFPUjJKR1pHaE5WWEJKVmxkd1MxUXlUbkpPVm1SaFVqSm9WRmxZY0ZkVlJscEhXa1JTVkUxV1ZqUlhhMXByVm0xRmVsVnNRbFpoYTBWNFdsWmFVMk15UmtaYVJtaFRZbFpLU2xkc1ZtdFNNVnBYVjJ4b2FGTkdjRlpXYWs1dlRURldjVkp1WkZSV2JFcDZWako0YTJGV1NsZGlSRnBYWVd0dmQxWnFRVEZUUmtwWllrWlNhVkp1UWxGV2FrSnJWVEZzVjFWc2FHcFNWMUp2VlcweE1FNVdVbGRXYm1ScFVqQndTbFZYZEhkWGJVVjRWMVJDV21FeVVreFZiWGhoWTFaU2MxcEdUbWxUUlVwYVZteFNTMlZyTVZkYVJXUlVZbXMxV0ZsclZuZGpSbXh5WVVWT2JGSnNjRWhXVjNRd1Ztc3hjMWRyYUZwTlJscHlWbXBLUzFOR1ZuSlBWbFpYVm10d05sWnRNVFJaVjFKSVZHdGtWV0pIVWxSWlZFNURXVlphVjFwSVpGVk5WbkJZVmpGb2QyRkdUa1pqUm1oWFlrWndWMXBWV2xwbFJtUnlaRVpvVjAxR2NFaFdSbHBXVFZaU2MxZHNiRkppUjFKWVdXeG9RMVJHY0VWU2JGcHNVbXhLZWxZeWN6VldSazVHVTJ4d1dGWXphRlJWYWtaWFVqRmtXVnBHWkdoTk1VcDZWbTB4TkZsWFZrZFdXR3hQVmpCYWIxUlhkSGRUVmxwWVpFZDBWMkpWY0ZaVlYzQlRWakF4ZFZScVRtRlNSVnBRV1hwR2QxSXhWbkpPVlRWT1VsaENUMVp0TVRCWlZteFhZa1phVDFkR1NsVlpWRW8wWTBaV2RHUklaRmhXYkZwNFZXMTBZV0pHU25SVmJuQllWa1UxZGxsWGMzaFNWa3AxWTBaa1YyVnNXazFXYlhSclV6Sk5lRlJ1VW1oU2IyeDA1bzBNdGJmV0NIQndWVzEwZDFkV1duUmtSMFpZWWxaYVYxUnNXbUZXUjBZMlZteG9WMDFHVlhkVVZWcGhZMVpPY1ZWdGFFNWhNWEEyVmxSSk1WVXhWa2RUYTFwVVlrWndWMVJWWkc5U1JtdDVaVVphYkZZeFdrZGFSV1IzWVZaS1ZWWnFXbGRpUjA0MFdXcEdWbVZHWkhOV2JFNW9Za1p3V1ZkWGVHOWlNbEp6VjJ4b2FtVnJXbFJVVm1oRFUyeGFTRTFYT1ZaTlJFWXhXVlZvYjFZeVNsbFJhM2hYVmtWYVVGbDZSbXRqYkdSMFlVWk9hV0V3Y0RWV2ExcGhXVlpzVjFwR1pHbFNiSEJZVmpCa2IxZEdWblJsU0U1T1RWWktlbFpzYUc5V01ERlhZbnBLVm1KWWFGUldha0Y0VmpKT1IyRkhSbE5XYmtKdlYydFdZVk15VWtkVGJrcFBWbXMxVDFSWGN6Qk5SbHAwVFVob1QxSXdiRFJXYkdoelZtMUtTRlZzVWxwaVdGSXpWakZhYzJOc2NFaFBWMnhPVm10d1dWZFdWbGRVTVZweVRWWmtWMkZzU21GV2JHUnZWVVphU0dWR2NHdE5SRVpXVmtkNFYyRldTblZSYkZaWVZteGFjbFZxUVRGa1JrcFpZMGR3VTJKSVFsbFdWM2hoWkRGV1IxcElUbUZUU0VKUFZtMTRkMWRHV1hsbFJtUlhWakJ3U2xWWGN6VldiVXBIWTBSS1ZWWnNjR2hXTUdSVFVtczVWazVXVG1oTk1FcFpWbXRTUjFZeGJGZFhhMmhVWWtkNFYxbHJaRk5XYkZweVZsUkdVMUpzY0ZkV01qVkxZa1pLZEdSNlNsZGlXR2gyVmxSQmVGSldXbkZWYkdSWFlsVXhORlp0Y0VkVk1rMTRZMFZhV0dKSGFIQlpWRUozVjFaYVIxZHRSbXROVmxwSVdUQldiMVJzV2xWaVNFcFhZbFJXUkZVd1dtRmtSVEZaVkcxb1UxWkZXa3RXVm1Rd1ZqRlplRmRxV2xKWFIyaFpWbTB4VTFJeGNFVlRiRXBzWWxWYVNWVnRlRk5WTWtwSlVXeHdWMkV4Y0doWlZFcEdaREExV1ZSc1pHbGhNMEpZVjFkNFYxbFhTWGhYYmtaU1lsVmFXRmxyV25kTlJuQldZVWQwV0ZJd2NGZFpNRlpyVjJ4a1NWRnJhRmRpV0dob1dYcEdUMk50UmtkWGF6VlhZbXRLV2xZeFVrdGxhekZYVjFob1ZXSnJOWEZWYWtwdlYwWldjVk5zU2s1U2JIQjVWakl4ZDFSc1duSldhbEpXVFZkb2NsWkVSazlUUmxaelYyeGtUbEl5YUVWWFYzQkhWakpPVjFOdVZtRlNNMUpQVm1wR1MwNVdXbkZUV0doT1VqQmFlbFl5TlU5aGJFcEdVMjFvVmsxSGFFUldSVnBoVWxaS2RHUkdVbE5OUm5CTFZsWmtORmxYUmxoVGJrcFVZV3R3V1ZscldtRmhSbHBWVTJzNWFrMXJOVWRaYTFwcllWWkplV0ZJV2xkU2JWSXpXVEp6ZUZJeFpGbGlSM0JUVmxSV2VGWkdWbE5TTWxaellraEdWV0p0VW05V2JYUjNaVlpTYzFwRlpGZE5hM0JKVmxjMVlWWnNXa1pYYkZKYVRXNW9jbGt5ZUZOak1WcHpWR3MxVTJKclNrcFdiVEUwWVcxV1NGVllhRmhpYTNCUFZqQmFZVlV4YkZoa1JYUllWbXh3ZUZaSGVFOWhiRnAwWkVSV1lWWlhhRXhaYTFwS1pERmtWVk5zWkZkbGExb3lWbXBDWVZOdFZsaFNhMnhoVW0xb1dGVnNaRE5OUm1SeVdUTm9WMDFXYkRWVmJHaDNZVVpLY21OSE9WcFhTRUpZV1dwR1lXUkhWa2hQVmxwT1ZtNUNTVll5ZEc5VE1WbDRXa1ZvVm1Kck5XRldNR2hEWld4V2NWSnVaRk5pUjNjeVZXMTRkMVl3TVVkalJtUllWbTFvTTFWcVJuTldNVTV5VjJ4b2FWSXlhRmxXVjNSWFpERk9SMVpZWkdGU2JWSlVXV3RhZDJWc2EzZFhiWFJWWWtad1dsVlhNVWRXTURGMVZXMW9XbUZyV25wV2FrWlBWMVp3UjFGc1pHbFdhM0IyVm14a2QxUXhSWGhhUm1ScFVtMTRjVlZzWkZOamJGSlhWMjVrVGxKdVFrZFdNakV3VmxkS1ZtTkZhRlpOYmxJelZtcEdTbVZzVm5OVmJHUlRUVEEwTUZaVVFtRldNVnBYVkc1T2FsSXllRmxWYWtwdlZGWlplV1JIZEU5U2JGWTBWako0WVZSc1dsZFhhemxXWVRGS1ExUXhSVGxRVVQw" ]
+                  statusCode:
+                    type: integer
+                    example: '200'
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Encryption error"
+                  message:
+                    type: string
+                    example: "Please check the key and text data"
+                  statusCode:
+                    type: integer
+                    example: '500'
+  /v1/AES/Decrypt:
+    post:
+      tags:
+        - AES
+      summary: Decrypt AES
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                key: A?D(G+KbPeShVmYq
+                text: 'Text to Decrypt'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  important:
+                    type: string
+                    example: My resources for the hosting are limited. Thanks for your understanding
+                  text:
+                    type: string
+                    example: Decrypted Text
+                  zulu:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        description:
+                          type: array
+                          items:
+                            type: string
+                          example:
+                            [ "Thanks for trying and testing Aguayus Shield Encryption!!!",
+                              "Aguayus Shield Encryption is a process to obfuscate the result text of an encryption",
+                              "Aguayus Shield Encryption modify the output of encryption process like AES or RSA, that means that the Key CAN NOT BE RECOVERED BY BRUTE FORCE",
+                              "Aguayus Shield Encryption has random output length that means that cannot be predictable",
+                              "Aguayus Shield Encryption is not based on maths because the maths is the way to calculate the key" ]
+                        challenge:
+                          type: array
+                          items:
+                            type: string
+                          example:
+                            [ "Aguayus Shield Encryption Challenge is a NON-PROFIT CHALLENGE",
+                              "This is a text that was encrypted with 128Bits AES Key and obfuscate with Aguayus",
+                              "If you can broke just follow the instructions there are inside the text:",
+                              "Vm0xd1IxbFhSWGxWV0doV1ltdHdUMVl3V2t0WFJteFZVbTVrVjFKdGVGWlZiVEZIVm14S2MxTnNaRmROYm1ob1dXdGFZV014VG5WaFJscFhaV3hhVVZkV1VrZFpWMDUwVkd0YWFsSnRVazlaVjNSYVpXeGFkRTFVVW1oTlZXdzFWa2QwYzJGc1NYZFhiRkpoVmpOb1lWcFhlR0ZqYkdSMFVteHdWMkpXU2xsV01uUnZWakZaZVZKWWNHaFNWR3hYV1ZkMGQyUnNXWGhYYlVacVZtdHdNRlF4V21GaFZscHlZak5rVjJFeVRYaFZWRXBHWlVaT2NscEdVbWxoTVhCWFZtMDFkMUl4V2tkV2JGWlRZbTFTVlZWcVJtRlRiR1J5VjIwNWFGSXhXbnBXYkdoelYwWmFjMWR1Um1GV1ZuQllXVEp6ZUZkV1duUmhSbEpUVFRKb1dWWnJXbGRaVmsxNFUxaG9hRTB5ZUU5V2JYTXhWMVphZEUxV1RsZGlSbkF3VkZab2EyRkdXbk5qU0d4YVRVZFNkbFpxU2tkamJVNUZWR3hhYkdFeGNGVldiWEJMVkRGSmVHTkZhR2hTYXpWUFZXMDFRMlJzV25STldHUlNZWHBHVjFSV1ZtdFhSMHB5WTBaa1dsWkZSWGhXYkZwelkyeGtjbVJHWkU1V2Exa3dWakowYWs1WFJsZFRia3BQVmxkNFdGWnRNVzlrYkZsNVpVZEdVMkY2VmxkWlZWcHJWVEF3ZVdGSE9WZFdla0kwVmtSR1MxWXhaSFZUYkVKWFRXMW9kbFpHV21GWGF6RkhWMjVTVGxaRlNtOVVWbVEwVjFaYWRHVkhSbFpTYkhCWVdUQmtiMWxXV1hwVmJXaFhWbFp3YUZsNlJuZFNWbEp5VGxaT2FWSnVRbGhXYkdONFRVVXhTRkpZYUZSaWF6VnhWVEJvUTFkR1ZuVmpSbVJWVW0xNGVWWXlNVEJXUmtsM1YydG9WbUpZYUdoV2FrWkxWbTFPUjJKR1pHaE5WWEJKVmxkd1MxUXlUbkpPVm1SaFVqSm9WRmxZY0ZkVlJscEhXa1JTVkUxV1ZqUlhhMXByVm0xRmVsVnNRbFpoYTBWNFdsWmFVMk15UmtaYVJtaFRZbFpLU2xkc1ZtdFNNVnBYVjJ4b2FGTkdjRlpXYWs1dlRURldjVkp1WkZSV2JFcDZWako0YTJGV1NsZGlSRnBYWVd0dmQxWnFRVEZUUmtwWllrWlNhVkp1UWxGV2FrSnJWVEZzVjFWc2FHcFNWMUp2VlcweE1FNVdVbGRXYm1ScFVqQndTbFZYZEhkWGJVVjRWMVJDV21FeVVreFZiWGhoWTFaU2MxcEdUbWxUUlVwYVZteFNTMlZyTVZkYVJXUlVZbXMxV0ZsclZuZGpSbXh5WVVWT2JGSnNjRWhXVjNRd1Ztc3hjMWRyYUZwTlJscHlWbXBLUzFOR1ZuSlBWbFpYVm10d05sWnRNVFJaVjFKSVZHdGtWV0pIVWxSWlZFNURXVlphVjFwSVpGVk5WbkJZVmpGb2QyRkdUa1pqUm1oWFlrWndWMXBWV2xwbFJtUnlaRVpvVjAxR2NFaFdSbHBXVFZaU2MxZHNiRkppUjFKWVdXeG9RMVJHY0VWU2JGcHNVbXhLZWxZeWN6VldSazVHVTJ4d1dGWXphRlJWYWtaWFVqRmtXVnBHWkdoTk1VcDZWbTB4TkZsWFZrZFdXR3hQVmpCYWIxUlhkSGRUVmxwWVpFZDBWMkpWY0ZaVlYzQlRWakF4ZFZScVRtRlNSVnBRV1hwR2QxSXhWbkpPVlRWT1VsaENUMVp0TVRCWlZteFhZa1phVDFkR1NsVlpWRW8wWTBaV2RHUklaRmhXYkZwNFZXMTBZV0pHU25SVmJuQllWa1UxZGxsWGMzaFNWa3AxWTBaa1YyVnNXazFXYlhSclV6Sk5lRlJ1VW1oU2IyeDA1bzBNdGJmV0NIQndWVzEwZDFkV1duUmtSMFpZWWxaYVYxUnNXbUZXUjBZMlZteG9WMDFHVlhkVVZWcGhZMVpPY1ZWdGFFNWhNWEEyVmxSSk1WVXhWa2RUYTFwVVlrWndWMVJWWkc5U1JtdDVaVVphYkZZeFdrZGFSV1IzWVZaS1ZWWnFXbGRpUjA0MFdXcEdWbVZHWkhOV2JFNW9Za1p3V1ZkWGVHOWlNbEp6VjJ4b2FtVnJXbFJVVm1oRFUyeGFTRTFYT1ZaTlJFWXhXVlZvYjFZeVNsbFJhM2hYVmtWYVVGbDZSbXRqYkdSMFlVWk9hV0V3Y0RWV2ExcGhXVlpzVjFwR1pHbFNiSEJZVmpCa2IxZEdWblJsU0U1T1RWWktlbFpzYUc5V01ERlhZbnBLVm1KWWFGUldha0Y0VmpKT1IyRkhSbE5XYmtKdlYydFdZVk15VWtkVGJrcFBWbXMxVDFSWGN6Qk5SbHAwVFVob1QxSXdiRFJXYkdoelZtMUtTRlZzVWxwaVdGSXpWakZhYzJOc2NFaFBWMnhPVm10d1dWZFdWbGRVTVZweVRWWmtWMkZzU21GV2JHUnZWVVphU0dWR2NHdE5SRVpXVmtkNFYyRldTblZSYkZaWVZteGFjbFZxUVRGa1JrcFpZMGR3VTJKSVFsbFdWM2hoWkRGV1IxcElUbUZUU0VKUFZtMTRkMWRHV1hsbFJtUlhWakJ3U2xWWGN6VldiVXBIWTBSS1ZWWnNjR2hXTUdSVFVtczVWazVXVG1oTk1FcFpWbXRTUjFZeGJGZFhhMmhVWWtkNFYxbHJaRk5XYkZweVZsUkdVMUpzY0ZkV01qVkxZa1pLZEdSNlNsZGlXR2gyVmxSQmVGSldXbkZWYkdSWFlsVXhORlp0Y0VkVk1rMTRZMFZhV0dKSGFIQlpWRUozVjFaYVIxZHRSbXROVmxwSVdUQldiMVJzV2xWaVNFcFhZbFJXUkZVd1dtRmtSVEZaVkcxb1UxWkZXa3RXVm1Rd1ZqRlplRmRxV2xKWFIyaFpWbTB4VTFJeGNFVlRiRXBzWWxWYVNWVnRlRk5WTWtwSlVXeHdWMkV4Y0doWlZFcEdaREExV1ZSc1pHbGhNMEpZVjFkNFYxbFhTWGhYYmtaU1lsVmFXRmxyV25kTlJuQldZVWQwV0ZJd2NGZFpNRlpyVjJ4a1NWRnJhRmRpV0dob1dYcEdUMk50UmtkWGF6VlhZbXRLV2xZeFVrdGxhekZYVjFob1ZXSnJOWEZWYWtwdlYwWldjVk5zU2s1U2JIQjVWakl4ZDFSc1duSldhbEpXVFZkb2NsWkVSazlUUmxaelYyeGtUbEl5YUVWWFYzQkhWakpPVjFOdVZtRlNNMUpQVm1wR1MwNVdXbkZUV0doT1VqQmFlbFl5TlU5aGJFcEdVMjFvVmsxSGFFUldSVnBoVWxaS2RHUkdVbE5OUm5CTFZsWmtORmxYUmxoVGJrcFVZV3R3V1ZscldtRmhSbHBWVTJzNWFrMXJOVWRaYTFwcllWWkplV0ZJV2xkU2JWSXpXVEp6ZUZJeFpGbGlSM0JUVmxSV2VGWkdWbE5TTWxaellraEdWV0p0VW05V2JYUjNaVlpTYzFwRlpGZE5hM0JKVmxjMVlWWnNXa1pYYkZKYVRXNW9jbGt5ZUZOak1WcHpWR3MxVTJKclNrcFdiVEUwWVcxV1NGVllhRmhpYTNCUFZqQmFZVlV4YkZoa1JYUllWbXh3ZUZaSGVFOWhiRnAwWkVSV1lWWlhhRXhaYTFwS1pERmtWVk5zWkZkbGExb3lWbXBDWVZOdFZsaFNhMnhoVW0xb1dGVnNaRE5OUm1SeVdUTm9WMDFXYkRWVmJHaDNZVVpLY21OSE9WcFhTRUpZV1dwR1lXUkhWa2hQVmxwT1ZtNUNTVll5ZEc5VE1WbDRXa1ZvVm1Kck5XRldNR2hEWld4V2NWSnVaRk5pUjNjeVZXMTRkMVl3TVVkalJtUllWbTFvTTFWcVJuTldNVTV5VjJ4b2FWSXlhRmxXVjNSWFpERk9SMVpZWkdGU2JWSlVXV3RhZDJWc2EzZFhiWFJWWWtad1dsVlhNVWRXTURGMVZXMW9XbUZyV25wV2FrWlBWMVp3UjFGc1pHbFdhM0IyVm14a2QxUXhSWGhhUm1ScFVtMTRjVlZzWkZOamJGSlhWMjVrVGxKdVFrZFdNakV3VmxkS1ZtTkZhRlpOYmxJelZtcEdTbVZzVm5OVmJHUlRUVEEwTUZaVVFtRldNVnBYVkc1T2FsSXllRmxWYWtwdlZGWlplV1JIZEU5U2JGWTBWako0WVZSc1dsZFhhemxXWVRGS1ExUXhSVGxRVVQw" ]
+                  statusCode:
+                    type: integer
+                    example: '200'
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Decryption error"
+                  message:
+                    type: string
+                    example: "Please check the key and text data"
+                  statusCode:
+                    type: integer
+                    example: '500'
+
+  /v1/RSA/keys:
+    get:
+      tags:
+        - RSA
+      summary: Generate Keys Pairs
+      parameters:
+        - name: size
+          in: query
+          required: true
+          schema:
+            type: integer
+          example: '2048'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  important:
+                    type: string
+                    example: My resources for the hosting are limited. Thanks for your understanding
+                  privateKey:
+                    type: string
+                    example: 'AQDJ4599xVOgRkTmkSRmYO47ncQ8qgV1bDSkfT10eOG/JvzJ...'
+                  publicKey:
+                    type: string
+                    example: 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQE...'
+                  message:
+                    type: string
+                    example: 'The key size generated is: 2048 bits'
+                  zulu:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        description:
+                          type: array
+                          items:
+                            type: string
+                          example:
+                            [ "Thanks for trying and testing Aguayus Shield Encryption!!!",
+                              "Aguayus Shield Encryption is a process to obfuscate the result text of an encryption",
+                              "Aguayus Shield Encryption modify the output of encryption process like AES or RSA, that means that the Key CAN NOT BE RECOVERED BY BRUTE FORCE",
+                              "Aguayus Shield Encryption has random output length that means that cannot be predictable",
+                              "Aguayus Shield Encryption is not based on maths because the maths is the way to calculate the key" ]
+                        challenge:
+                          type: array
+                          items:
+                            type: string
+                          example:
+                            [ "Aguayus Shield Encryption Challenge is a NON-PROFIT CHALLENGE",
+                              "This is a text that was encrypted with 128Bits AES Key and obfuscate with Aguayus",
+                              "If you can broke just follow the instructions there are inside the text:",
+                              "Vm0xd1IxbFhSWGxWV0doV1ltdHdUMVl3V2t0WFJteFZVbTVrVjFKdGVGWlZiVEZIVm14S2MxTnNaRmROYm1ob1dXdGFZV014VG5WaFJscFhaV3hhVVZkV1VrZFpWMDUwVkd0YWFsSnRVazlaVjNSYVpXeGFkRTFVVW1oTlZXdzFWa2QwYzJGc1NYZFhiRkpoVmpOb1lWcFhlR0ZqYkdSMFVteHdWMkpXU2xsV01uUnZWakZaZVZKWWNHaFNWR3hYV1ZkMGQyUnNXWGhYYlVacVZtdHdNRlF4V21GaFZscHlZak5rVjJFeVRYaFZWRXBHWlVaT2NscEdVbWxoTVhCWFZtMDFkMUl4V2tkV2JGWlRZbTFTVlZWcVJtRlRiR1J5VjIwNWFGSXhXbnBXYkdoelYwWmFjMWR1Um1GV1ZuQllXVEp6ZUZkV1duUmhSbEpUVFRKb1dWWnJXbGRaVmsxNFUxaG9hRTB5ZUU5V2JYTXhWMVphZEUxV1RsZGlSbkF3VkZab2EyRkdXbk5qU0d4YVRVZFNkbFpxU2tkamJVNUZWR3hhYkdFeGNGVldiWEJMVkRGSmVHTkZhR2hTYXpWUFZXMDFRMlJzV25STldHUlNZWHBHVjFSV1ZtdFhSMHB5WTBaa1dsWkZSWGhXYkZwelkyeGtjbVJHWkU1V2Exa3dWakowYWs1WFJsZFRia3BQVmxkNFdGWnRNVzlrYkZsNVpVZEdVMkY2VmxkWlZWcHJWVEF3ZVdGSE9WZFdla0kwVmtSR1MxWXhaSFZUYkVKWFRXMW9kbFpHV21GWGF6RkhWMjVTVGxaRlNtOVVWbVEwVjFaYWRHVkhSbFpTYkhCWVdUQmtiMWxXV1hwVmJXaFhWbFp3YUZsNlJuZFNWbEp5VGxaT2FWSnVRbGhXYkdONFRVVXhTRkpZYUZSaWF6VnhWVEJvUTFkR1ZuVmpSbVJWVW0xNGVWWXlNVEJXUmtsM1YydG9WbUpZYUdoV2FrWkxWbTFPUjJKR1pHaE5WWEJKVmxkd1MxUXlUbkpPVm1SaFVqSm9WRmxZY0ZkVlJscEhXa1JTVkUxV1ZqUlhhMXByVm0xRmVsVnNRbFpoYTBWNFdsWmFVMk15UmtaYVJtaFRZbFpLU2xkc1ZtdFNNVnBYVjJ4b2FGTkdjRlpXYWs1dlRURldjVkp1WkZSV2JFcDZWako0YTJGV1NsZGlSRnBYWVd0dmQxWnFRVEZUUmtwWllrWlNhVkp1UWxGV2FrSnJWVEZzVjFWc2FHcFNWMUp2VlcweE1FNVdVbGRXYm1ScFVqQndTbFZYZEhkWGJVVjRWMVJDV21FeVVreFZiWGhoWTFaU2MxcEdUbWxUUlVwYVZteFNTMlZyTVZkYVJXUlVZbXMxV0ZsclZuZGpSbXh5WVVWT2JGSnNjRWhXVjNRd1Ztc3hjMWRyYUZwTlJscHlWbXBLUzFOR1ZuSlBWbFpYVm10d05sWnRNVFJaVjFKSVZHdGtWV0pIVWxSWlZFNURXVlphVjFwSVpGVk5WbkJZVmpGb2QyRkdUa1pqUm1oWFlrWndWMXBWV2xwbFJtUnlaRVpvVjAxR2NFaFdSbHBXVFZaU2MxZHNiRkppUjFKWVdXeG9RMVJHY0VWU2JGcHNVbXhLZWxZeWN6VldSazVHVTJ4d1dGWXphRlJWYWtaWFVqRmtXVnBHWkdoTk1VcDZWbTB4TkZsWFZrZFdXR3hQVmpCYWIxUlhkSGRUVmxwWVpFZDBWMkpWY0ZaVlYzQlRWakF4ZFZScVRtRlNSVnBRV1hwR2QxSXhWbkpPVlRWT1VsaENUMVp0TVRCWlZteFhZa1phVDFkR1NsVlpWRW8wWTBaV2RHUklaRmhXYkZwNFZXMTBZV0pHU25SVmJuQllWa1UxZGxsWGMzaFNWa3AxWTBaa1YyVnNXazFXYlhSclV6Sk5lRlJ1VW1oU2IyeDA1bzBNdGJmV0NIQndWVzEwZDFkV1duUmtSMFpZWWxaYVYxUnNXbUZXUjBZMlZteG9WMDFHVlhkVVZWcGhZMVpPY1ZWdGFFNWhNWEEyVmxSSk1WVXhWa2RUYTFwVVlrWndWMVJWWkc5U1JtdDVaVVphYkZZeFdrZGFSV1IzWVZaS1ZWWnFXbGRpUjA0MFdXcEdWbVZHWkhOV2JFNW9Za1p3V1ZkWGVHOWlNbEp6VjJ4b2FtVnJXbFJVVm1oRFUyeGFTRTFYT1ZaTlJFWXhXVlZvYjFZeVNsbFJhM2hYVmtWYVVGbDZSbXRqYkdSMFlVWk9hV0V3Y0RWV2ExcGhXVlpzVjFwR1pHbFNiSEJZVmpCa2IxZEdWblJsU0U1T1RWWktlbFpzYUc5V01ERlhZbnBLVm1KWWFGUldha0Y0VmpKT1IyRkhSbE5XYmtKdlYydFdZVk15VWtkVGJrcFBWbXMxVDFSWGN6Qk5SbHAwVFVob1QxSXdiRFJXYkdoelZtMUtTRlZzVWxwaVdGSXpWakZhYzJOc2NFaFBWMnhPVm10d1dWZFdWbGRVTVZweVRWWmtWMkZzU21GV2JHUnZWVVphU0dWR2NHdE5SRVpXVmtkNFYyRldTblZSYkZaWVZteGFjbFZxUVRGa1JrcFpZMGR3VTJKSVFsbFdWM2hoWkRGV1IxcElUbUZUU0VKUFZtMTRkMWRHV1hsbFJtUlhWakJ3U2xWWGN6VldiVXBIWTBSS1ZWWnNjR2hXTUdSVFVtczVWazVXVG1oTk1FcFpWbXRTUjFZeGJGZFhhMmhVWWtkNFYxbHJaRk5XYkZweVZsUkdVMUpzY0ZkV01qVkxZa1pLZEdSNlNsZGlXR2gyVmxSQmVGSldXbkZWYkdSWFlsVXhORlp0Y0VkVk1rMTRZMFZhV0dKSGFIQlpWRUozVjFaYVIxZHRSbXROVmxwSVdUQldiMVJzV2xWaVNFcFhZbFJXUkZVd1dtRmtSVEZaVkcxb1UxWkZXa3RXVm1Rd1ZqRlplRmRxV2xKWFIyaFpWbTB4VTFJeGNFVlRiRXBzWWxWYVNWVnRlRk5WTWtwSlVXeHdWMkV4Y0doWlZFcEdaREExV1ZSc1pHbGhNMEpZVjFkNFYxbFhTWGhYYmtaU1lsVmFXRmxyV25kTlJuQldZVWQwV0ZJd2NGZFpNRlpyVjJ4a1NWRnJhRmRpV0dob1dYcEdUMk50UmtkWGF6VlhZbXRLV2xZeFVrdGxhekZYVjFob1ZXSnJOWEZWYWtwdlYwWldjVk5zU2s1U2JIQjVWakl4ZDFSc1duSldhbEpXVFZkb2NsWkVSazlUUmxaelYyeGtUbEl5YUVWWFYzQkhWakpPVjFOdVZtRlNNMUpQVm1wR1MwNVdXbkZUV0doT1VqQmFlbFl5TlU5aGJFcEdVMjFvVmsxSGFFUldSVnBoVWxaS2RHUkdVbE5OUm5CTFZsWmtORmxYUmxoVGJrcFVZV3R3V1ZscldtRmhSbHBWVTJzNWFrMXJOVWRaYTFwcllWWkplV0ZJV2xkU2JWSXpXVEp6ZUZJeFpGbGlSM0JUVmxSV2VGWkdWbE5TTWxaellraEdWV0p0VW05V2JYUjNaVlpTYzFwRlpGZE5hM0JKVmxjMVlWWnNXa1pYYkZKYVRXNW9jbGt5ZUZOak1WcHpWR3MxVTJKclNrcFdiVEUwWVcxV1NGVllhRmhpYTNCUFZqQmFZVlV4YkZoa1JYUllWbXh3ZUZaSGVFOWhiRnAwWkVSV1lWWlhhRXhaYTFwS1pERmtWVk5zWkZkbGExb3lWbXBDWVZOdFZsaFNhMnhoVW0xb1dGVnNaRE5OUm1SeVdUTm9WMDFXYkRWVmJHaDNZVVpLY21OSE9WcFhTRUpZV1dwR1lXUkhWa2hQVmxwT1ZtNUNTVll5ZEc5VE1WbDRXa1ZvVm1Kck5XRldNR2hEWld4V2NWSnVaRk5pUjNjeVZXMTRkMVl3TVVkalJtUllWbTFvTTFWcVJuTldNVTV5VjJ4b2FWSXlhRmxXVjNSWFpERk9SMVpZWkdGU2JWSlVXV3RhZDJWc2EzZFhiWFJWWWtad1dsVlhNVWRXTURGMVZXMW9XbUZyV25wV2FrWlBWMVp3UjFGc1pHbFdhM0IyVm14a2QxUXhSWGhhUm1ScFVtMTRjVlZzWkZOamJGSlhWMjVrVGxKdVFrZFdNakV3VmxkS1ZtTkZhRlpOYmxJelZtcEdTbVZzVm5OVmJHUlRUVEEwTUZaVVFtRldNVnBYVkc1T2FsSXllRmxWYWtwdlZGWlplV1JIZEU5U2JGWTBWako0WVZSc1dsZFhhemxXWVRGS1ExUXhSVGxRVVQw" ]
+                  statusCode:
+                    type: integer
+                    example: '200'
+  /v1/RSA/Encrypt:
+    post:
+      tags:
+        - RSA
+      summary: Encrypt RSA
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                key: "PrivateKey or PublicKey (As long as they are of the same key pair)"
+                text: Text to Encrypt
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  important:
+                    type: string
+                    example: My resources for the hosting are limited. Thanks for your understanding
+                  text:
+                    type: string
+                    example: Encrypted Text
+                  zulu:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        description:
+                          type: array
+                          items:
+                            type: string
+                          example:
+                            [ "Thanks for trying and testing Aguayus Shield Encryption!!!",
+                              "Aguayus Shield Encryption is a process to obfuscate the result text of an encryption",
+                              "Aguayus Shield Encryption modify the output of encryption process like AES or RSA, that means that the Key CAN NOT BE RECOVERED BY BRUTE FORCE",
+                              "Aguayus Shield Encryption has random output length that means that cannot be predictable",
+                              "Aguayus Shield Encryption is not based on maths because the maths is the way to calculate the key" ]
+                        challenge:
+                          type: array
+                          items:
+                            type: string
+                          example:
+                            [ "Aguayus Shield Encryption Challenge is a NON-PROFIT CHALLENGE",
+                              "This is a text that was encrypted with 128Bits AES Key and obfuscate with Aguayus",
+                              "If you can broke just follow the instructions there are inside the text:",
+                              "Vm0xd1IxbFhSWGxWV0doV1ltdHdUMVl3V2t0WFJteFZVbTVrVjFKdGVGWlZiVEZIVm14S2MxTnNaRmROYm1ob1dXdGFZV014VG5WaFJscFhaV3hhVVZkV1VrZFpWMDUwVkd0YWFsSnRVazlaVjNSYVpXeGFkRTFVVW1oTlZXdzFWa2QwYzJGc1NYZFhiRkpoVmpOb1lWcFhlR0ZqYkdSMFVteHdWMkpXU2xsV01uUnZWakZaZVZKWWNHaFNWR3hYV1ZkMGQyUnNXWGhYYlVacVZtdHdNRlF4V21GaFZscHlZak5rVjJFeVRYaFZWRXBHWlVaT2NscEdVbWxoTVhCWFZtMDFkMUl4V2tkV2JGWlRZbTFTVlZWcVJtRlRiR1J5VjIwNWFGSXhXbnBXYkdoelYwWmFjMWR1Um1GV1ZuQllXVEp6ZUZkV1duUmhSbEpUVFRKb1dWWnJXbGRaVmsxNFUxaG9hRTB5ZUU5V2JYTXhWMVphZEUxV1RsZGlSbkF3VkZab2EyRkdXbk5qU0d4YVRVZFNkbFpxU2tkamJVNUZWR3hhYkdFeGNGVldiWEJMVkRGSmVHTkZhR2hTYXpWUFZXMDFRMlJzV25STldHUlNZWHBHVjFSV1ZtdFhSMHB5WTBaa1dsWkZSWGhXYkZwelkyeGtjbVJHWkU1V2Exa3dWakowYWs1WFJsZFRia3BQVmxkNFdGWnRNVzlrYkZsNVpVZEdVMkY2VmxkWlZWcHJWVEF3ZVdGSE9WZFdla0kwVmtSR1MxWXhaSFZUYkVKWFRXMW9kbFpHV21GWGF6RkhWMjVTVGxaRlNtOVVWbVEwVjFaYWRHVkhSbFpTYkhCWVdUQmtiMWxXV1hwVmJXaFhWbFp3YUZsNlJuZFNWbEp5VGxaT2FWSnVRbGhXYkdONFRVVXhTRkpZYUZSaWF6VnhWVEJvUTFkR1ZuVmpSbVJWVW0xNGVWWXlNVEJXUmtsM1YydG9WbUpZYUdoV2FrWkxWbTFPUjJKR1pHaE5WWEJKVmxkd1MxUXlUbkpPVm1SaFVqSm9WRmxZY0ZkVlJscEhXa1JTVkUxV1ZqUlhhMXByVm0xRmVsVnNRbFpoYTBWNFdsWmFVMk15UmtaYVJtaFRZbFpLU2xkc1ZtdFNNVnBYVjJ4b2FGTkdjRlpXYWs1dlRURldjVkp1WkZSV2JFcDZWako0YTJGV1NsZGlSRnBYWVd0dmQxWnFRVEZUUmtwWllrWlNhVkp1UWxGV2FrSnJWVEZzVjFWc2FHcFNWMUp2VlcweE1FNVdVbGRXYm1ScFVqQndTbFZYZEhkWGJVVjRWMVJDV21FeVVreFZiWGhoWTFaU2MxcEdUbWxUUlVwYVZteFNTMlZyTVZkYVJXUlVZbXMxV0ZsclZuZGpSbXh5WVVWT2JGSnNjRWhXVjNRd1Ztc3hjMWRyYUZwTlJscHlWbXBLUzFOR1ZuSlBWbFpYVm10d05sWnRNVFJaVjFKSVZHdGtWV0pIVWxSWlZFNURXVlphVjFwSVpGVk5WbkJZVmpGb2QyRkdUa1pqUm1oWFlrWndWMXBWV2xwbFJtUnlaRVpvVjAxR2NFaFdSbHBXVFZaU2MxZHNiRkppUjFKWVdXeG9RMVJHY0VWU2JGcHNVbXhLZWxZeWN6VldSazVHVTJ4d1dGWXphRlJWYWtaWFVqRmtXVnBHWkdoTk1VcDZWbTB4TkZsWFZrZFdXR3hQVmpCYWIxUlhkSGRUVmxwWVpFZDBWMkpWY0ZaVlYzQlRWakF4ZFZScVRtRlNSVnBRV1hwR2QxSXhWbkpPVlRWT1VsaENUMVp0TVRCWlZteFhZa1phVDFkR1NsVlpWRW8wWTBaV2RHUklaRmhXYkZwNFZXMTBZV0pHU25SVmJuQllWa1UxZGxsWGMzaFNWa3AxWTBaa1YyVnNXazFXYlhSclV6Sk5lRlJ1VW1oU2IyeDA1bzBNdGJmV0NIQndWVzEwZDFkV1duUmtSMFpZWWxaYVYxUnNXbUZXUjBZMlZteG9WMDFHVlhkVVZWcGhZMVpPY1ZWdGFFNWhNWEEyVmxSSk1WVXhWa2RUYTFwVVlrWndWMVJWWkc5U1JtdDVaVVphYkZZeFdrZGFSV1IzWVZaS1ZWWnFXbGRpUjA0MFdXcEdWbVZHWkhOV2JFNW9Za1p3V1ZkWGVHOWlNbEp6VjJ4b2FtVnJXbFJVVm1oRFUyeGFTRTFYT1ZaTlJFWXhXVlZvYjFZeVNsbFJhM2hYVmtWYVVGbDZSbXRqYkdSMFlVWk9hV0V3Y0RWV2ExcGhXVlpzVjFwR1pHbFNiSEJZVmpCa2IxZEdWblJsU0U1T1RWWktlbFpzYUc5V01ERlhZbnBLVm1KWWFGUldha0Y0VmpKT1IyRkhSbE5XYmtKdlYydFdZVk15VWtkVGJrcFBWbXMxVDFSWGN6Qk5SbHAwVFVob1QxSXdiRFJXYkdoelZtMUtTRlZzVWxwaVdGSXpWakZhYzJOc2NFaFBWMnhPVm10d1dWZFdWbGRVTVZweVRWWmtWMkZzU21GV2JHUnZWVVphU0dWR2NHdE5SRVpXVmtkNFYyRldTblZSYkZaWVZteGFjbFZxUVRGa1JrcFpZMGR3VTJKSVFsbFdWM2hoWkRGV1IxcElUbUZUU0VKUFZtMTRkMWRHV1hsbFJtUlhWakJ3U2xWWGN6VldiVXBIWTBSS1ZWWnNjR2hXTUdSVFVtczVWazVXVG1oTk1FcFpWbXRTUjFZeGJGZFhhMmhVWWtkNFYxbHJaRk5XYkZweVZsUkdVMUpzY0ZkV01qVkxZa1pLZEdSNlNsZGlXR2gyVmxSQmVGSldXbkZWYkdSWFlsVXhORlp0Y0VkVk1rMTRZMFZhV0dKSGFIQlpWRUozVjFaYVIxZHRSbXROVmxwSVdUQldiMVJzV2xWaVNFcFhZbFJXUkZVd1dtRmtSVEZaVkcxb1UxWkZXa3RXVm1Rd1ZqRlplRmRxV2xKWFIyaFpWbTB4VTFJeGNFVlRiRXBzWWxWYVNWVnRlRk5WTWtwSlVXeHdWMkV4Y0doWlZFcEdaREExV1ZSc1pHbGhNMEpZVjFkNFYxbFhTWGhYYmtaU1lsVmFXRmxyV25kTlJuQldZVWQwV0ZJd2NGZFpNRlpyVjJ4a1NWRnJhRmRpV0dob1dYcEdUMk50UmtkWGF6VlhZbXRLV2xZeFVrdGxhekZYVjFob1ZXSnJOWEZWYWtwdlYwWldjVk5zU2s1U2JIQjVWakl4ZDFSc1duSldhbEpXVFZkb2NsWkVSazlUUmxaelYyeGtUbEl5YUVWWFYzQkhWakpPVjFOdVZtRlNNMUpQVm1wR1MwNVdXbkZUV0doT1VqQmFlbFl5TlU5aGJFcEdVMjFvVmsxSGFFUldSVnBoVWxaS2RHUkdVbE5OUm5CTFZsWmtORmxYUmxoVGJrcFVZV3R3V1ZscldtRmhSbHBWVTJzNWFrMXJOVWRaYTFwcllWWkplV0ZJV2xkU2JWSXpXVEp6ZUZJeFpGbGlSM0JUVmxSV2VGWkdWbE5TTWxaellraEdWV0p0VW05V2JYUjNaVlpTYzFwRlpGZE5hM0JKVmxjMVlWWnNXa1pYYkZKYVRXNW9jbGt5ZUZOak1WcHpWR3MxVTJKclNrcFdiVEUwWVcxV1NGVllhRmhpYTNCUFZqQmFZVlV4YkZoa1JYUllWbXh3ZUZaSGVFOWhiRnAwWkVSV1lWWlhhRXhaYTFwS1pERmtWVk5zWkZkbGExb3lWbXBDWVZOdFZsaFNhMnhoVW0xb1dGVnNaRE5OUm1SeVdUTm9WMDFXYkRWVmJHaDNZVVpLY21OSE9WcFhTRUpZV1dwR1lXUkhWa2hQVmxwT1ZtNUNTVll5ZEc5VE1WbDRXa1ZvVm1Kck5XRldNR2hEWld4V2NWSnVaRk5pUjNjeVZXMTRkMVl3TVVkalJtUllWbTFvTTFWcVJuTldNVTV5VjJ4b2FWSXlhRmxXVjNSWFpERk9SMVpZWkdGU2JWSlVXV3RhZDJWc2EzZFhiWFJWWWtad1dsVlhNVWRXTURGMVZXMW9XbUZyV25wV2FrWlBWMVp3UjFGc1pHbFdhM0IyVm14a2QxUXhSWGhhUm1ScFVtMTRjVlZzWkZOamJGSlhWMjVrVGxKdVFrZFdNakV3VmxkS1ZtTkZhRlpOYmxJelZtcEdTbVZzVm5OVmJHUlRUVEEwTUZaVVFtRldNVnBYVkc1T2FsSXllRmxWYWtwdlZGWlplV1JIZEU5U2JGWTBWako0WVZSc1dsZFhhemxXWVRGS1ExUXhSVGxRVVQw" ]
+                        message:
+                          type: string
+                          example: "NOTE: I am working to reduce the length of the RSA encrypted text"
+                  statusCode:
+                    type: integer
+                    example: '200'
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Encryption error"
+                  message:
+                    type: string
+                    example: "Please check the key and text data"
+                  statusCode:
+                    type: integer
+                    example: '500'
+  /v1/RSA/Decrypt:
+    post:
+      tags:
+        - RSA
+      summary: Decrypt RSA
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                key: "PrivateKey or PublicKey (As long as they are of the same key pair)"
+                text: "Text to Decrypt"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  important:
+                    type: string
+                    example: My resources for the hosting are limited. Thanks for your understanding
+                  text:
+                    type: string
+                    example: Decrypted Text
+                  zulu:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        description:
+                          type: array
+                          items:
+                            type: string
+                          example:
+                            [ "Thanks for trying and testing Aguayus Shield Encryption!!!",
+                              "Aguayus Shield Encryption is a process to obfuscate the result text of an encryption",
+                              "Aguayus Shield Encryption modify the output of encryption process like AES or RSA, that means that the Key CAN NOT BE RECOVERED BY BRUTE FORCE",
+                              "Aguayus Shield Encryption has random output length that means that cannot be predictable",
+                              "Aguayus Shield Encryption is not based on maths because the maths is the way to calculate the key" ]
+                        challenge:
+                          type: array
+                          items:
+                            type: string
+                          example:
+                            [ "Aguayus Shield Encryption Challenge is a NON-PROFIT CHALLENGE",
+                              "This is a text that was encrypted with 128Bits AES Key and obfuscate with Aguayus",
+                              "If you can broke just follow the instructions there are inside the text:",
+                              "Vm0xd1IxbFhSWGxWV0doV1ltdHdUMVl3V2t0WFJteFZVbTVrVjFKdGVGWlZiVEZIVm14S2MxTnNaRmROYm1ob1dXdGFZV014VG5WaFJscFhaV3hhVVZkV1VrZFpWMDUwVkd0YWFsSnRVazlaVjNSYVpXeGFkRTFVVW1oTlZXdzFWa2QwYzJGc1NYZFhiRkpoVmpOb1lWcFhlR0ZqYkdSMFVteHdWMkpXU2xsV01uUnZWakZaZVZKWWNHaFNWR3hYV1ZkMGQyUnNXWGhYYlVacVZtdHdNRlF4V21GaFZscHlZak5rVjJFeVRYaFZWRXBHWlVaT2NscEdVbWxoTVhCWFZtMDFkMUl4V2tkV2JGWlRZbTFTVlZWcVJtRlRiR1J5VjIwNWFGSXhXbnBXYkdoelYwWmFjMWR1Um1GV1ZuQllXVEp6ZUZkV1duUmhSbEpUVFRKb1dWWnJXbGRaVmsxNFUxaG9hRTB5ZUU5V2JYTXhWMVphZEUxV1RsZGlSbkF3VkZab2EyRkdXbk5qU0d4YVRVZFNkbFpxU2tkamJVNUZWR3hhYkdFeGNGVldiWEJMVkRGSmVHTkZhR2hTYXpWUFZXMDFRMlJzV25STldHUlNZWHBHVjFSV1ZtdFhSMHB5WTBaa1dsWkZSWGhXYkZwelkyeGtjbVJHWkU1V2Exa3dWakowYWs1WFJsZFRia3BQVmxkNFdGWnRNVzlrYkZsNVpVZEdVMkY2VmxkWlZWcHJWVEF3ZVdGSE9WZFdla0kwVmtSR1MxWXhaSFZUYkVKWFRXMW9kbFpHV21GWGF6RkhWMjVTVGxaRlNtOVVWbVEwVjFaYWRHVkhSbFpTYkhCWVdUQmtiMWxXV1hwVmJXaFhWbFp3YUZsNlJuZFNWbEp5VGxaT2FWSnVRbGhXYkdONFRVVXhTRkpZYUZSaWF6VnhWVEJvUTFkR1ZuVmpSbVJWVW0xNGVWWXlNVEJXUmtsM1YydG9WbUpZYUdoV2FrWkxWbTFPUjJKR1pHaE5WWEJKVmxkd1MxUXlUbkpPVm1SaFVqSm9WRmxZY0ZkVlJscEhXa1JTVkUxV1ZqUlhhMXByVm0xRmVsVnNRbFpoYTBWNFdsWmFVMk15UmtaYVJtaFRZbFpLU2xkc1ZtdFNNVnBYVjJ4b2FGTkdjRlpXYWs1dlRURldjVkp1WkZSV2JFcDZWako0YTJGV1NsZGlSRnBYWVd0dmQxWnFRVEZUUmtwWllrWlNhVkp1UWxGV2FrSnJWVEZzVjFWc2FHcFNWMUp2VlcweE1FNVdVbGRXYm1ScFVqQndTbFZYZEhkWGJVVjRWMVJDV21FeVVreFZiWGhoWTFaU2MxcEdUbWxUUlVwYVZteFNTMlZyTVZkYVJXUlVZbXMxV0ZsclZuZGpSbXh5WVVWT2JGSnNjRWhXVjNRd1Ztc3hjMWRyYUZwTlJscHlWbXBLUzFOR1ZuSlBWbFpYVm10d05sWnRNVFJaVjFKSVZHdGtWV0pIVWxSWlZFNURXVlphVjFwSVpGVk5WbkJZVmpGb2QyRkdUa1pqUm1oWFlrWndWMXBWV2xwbFJtUnlaRVpvVjAxR2NFaFdSbHBXVFZaU2MxZHNiRkppUjFKWVdXeG9RMVJHY0VWU2JGcHNVbXhLZWxZeWN6VldSazVHVTJ4d1dGWXphRlJWYWtaWFVqRmtXVnBHWkdoTk1VcDZWbTB4TkZsWFZrZFdXR3hQVmpCYWIxUlhkSGRUVmxwWVpFZDBWMkpWY0ZaVlYzQlRWakF4ZFZScVRtRlNSVnBRV1hwR2QxSXhWbkpPVlRWT1VsaENUMVp0TVRCWlZteFhZa1phVDFkR1NsVlpWRW8wWTBaV2RHUklaRmhXYkZwNFZXMTBZV0pHU25SVmJuQllWa1UxZGxsWGMzaFNWa3AxWTBaa1YyVnNXazFXYlhSclV6Sk5lRlJ1VW1oU2IyeDA1bzBNdGJmV0NIQndWVzEwZDFkV1duUmtSMFpZWWxaYVYxUnNXbUZXUjBZMlZteG9WMDFHVlhkVVZWcGhZMVpPY1ZWdGFFNWhNWEEyVmxSSk1WVXhWa2RUYTFwVVlrWndWMVJWWkc5U1JtdDVaVVphYkZZeFdrZGFSV1IzWVZaS1ZWWnFXbGRpUjA0MFdXcEdWbVZHWkhOV2JFNW9Za1p3V1ZkWGVHOWlNbEp6VjJ4b2FtVnJXbFJVVm1oRFUyeGFTRTFYT1ZaTlJFWXhXVlZvYjFZeVNsbFJhM2hYVmtWYVVGbDZSbXRqYkdSMFlVWk9hV0V3Y0RWV2ExcGhXVlpzVjFwR1pHbFNiSEJZVmpCa2IxZEdWblJsU0U1T1RWWktlbFpzYUc5V01ERlhZbnBLVm1KWWFGUldha0Y0VmpKT1IyRkhSbE5XYmtKdlYydFdZVk15VWtkVGJrcFBWbXMxVDFSWGN6Qk5SbHAwVFVob1QxSXdiRFJXYkdoelZtMUtTRlZzVWxwaVdGSXpWakZhYzJOc2NFaFBWMnhPVm10d1dWZFdWbGRVTVZweVRWWmtWMkZzU21GV2JHUnZWVVphU0dWR2NHdE5SRVpXVmtkNFYyRldTblZSYkZaWVZteGFjbFZxUVRGa1JrcFpZMGR3VTJKSVFsbFdWM2hoWkRGV1IxcElUbUZUU0VKUFZtMTRkMWRHV1hsbFJtUlhWakJ3U2xWWGN6VldiVXBIWTBSS1ZWWnNjR2hXTUdSVFVtczVWazVXVG1oTk1FcFpWbXRTUjFZeGJGZFhhMmhVWWtkNFYxbHJaRk5XYkZweVZsUkdVMUpzY0ZkV01qVkxZa1pLZEdSNlNsZGlXR2gyVmxSQmVGSldXbkZWYkdSWFlsVXhORlp0Y0VkVk1rMTRZMFZhV0dKSGFIQlpWRUozVjFaYVIxZHRSbXROVmxwSVdUQldiMVJzV2xWaVNFcFhZbFJXUkZVd1dtRmtSVEZaVkcxb1UxWkZXa3RXVm1Rd1ZqRlplRmRxV2xKWFIyaFpWbTB4VTFJeGNFVlRiRXBzWWxWYVNWVnRlRk5WTWtwSlVXeHdWMkV4Y0doWlZFcEdaREExV1ZSc1pHbGhNMEpZVjFkNFYxbFhTWGhYYmtaU1lsVmFXRmxyV25kTlJuQldZVWQwV0ZJd2NGZFpNRlpyVjJ4a1NWRnJhRmRpV0dob1dYcEdUMk50UmtkWGF6VlhZbXRLV2xZeFVrdGxhekZYVjFob1ZXSnJOWEZWYWtwdlYwWldjVk5zU2s1U2JIQjVWakl4ZDFSc1duSldhbEpXVFZkb2NsWkVSazlUUmxaelYyeGtUbEl5YUVWWFYzQkhWakpPVjFOdVZtRlNNMUpQVm1wR1MwNVdXbkZUV0doT1VqQmFlbFl5TlU5aGJFcEdVMjFvVmsxSGFFUldSVnBoVWxaS2RHUkdVbE5OUm5CTFZsWmtORmxYUmxoVGJrcFVZV3R3V1ZscldtRmhSbHBWVTJzNWFrMXJOVWRaYTFwcllWWkplV0ZJV2xkU2JWSXpXVEp6ZUZJeFpGbGlSM0JUVmxSV2VGWkdWbE5TTWxaellraEdWV0p0VW05V2JYUjNaVlpTYzFwRlpGZE5hM0JKVmxjMVlWWnNXa1pYYkZKYVRXNW9jbGt5ZUZOak1WcHpWR3MxVTJKclNrcFdiVEUwWVcxV1NGVllhRmhpYTNCUFZqQmFZVlV4YkZoa1JYUllWbXh3ZUZaSGVFOWhiRnAwWkVSV1lWWlhhRXhaYTFwS1pERmtWVk5zWkZkbGExb3lWbXBDWVZOdFZsaFNhMnhoVW0xb1dGVnNaRE5OUm1SeVdUTm9WMDFXYkRWVmJHaDNZVVpLY21OSE9WcFhTRUpZV1dwR1lXUkhWa2hQVmxwT1ZtNUNTVll5ZEc5VE1WbDRXa1ZvVm1Kck5XRldNR2hEWld4V2NWSnVaRk5pUjNjeVZXMTRkMVl3TVVkalJtUllWbTFvTTFWcVJuTldNVTV5VjJ4b2FWSXlhRmxXVjNSWFpERk9SMVpZWkdGU2JWSlVXV3RhZDJWc2EzZFhiWFJWWWtad1dsVlhNVWRXTURGMVZXMW9XbUZyV25wV2FrWlBWMVp3UjFGc1pHbFdhM0IyVm14a2QxUXhSWGhhUm1ScFVtMTRjVlZzWkZOamJGSlhWMjVrVGxKdVFrZFdNakV3VmxkS1ZtTkZhRlpOYmxJelZtcEdTbVZzVm5OVmJHUlRUVEEwTUZaVVFtRldNVnBYVkc1T2FsSXllRmxWYWtwdlZGWlplV1JIZEU5U2JGWTBWako0WVZSc1dsZFhhemxXWVRGS1ExUXhSVGxRVVQw" ]
+                  statusCode:
+                    type: integer
+                    example: '200'
+        '500':
+          description: Error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Decryption error"
+                  message:
+                    type: string
+                    example: "Please check the key and text data"
+                  statusCode:
+                    type: integer
+                    example: '500'
