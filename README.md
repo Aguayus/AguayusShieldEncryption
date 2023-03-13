@@ -10,7 +10,7 @@
  I know that the output looks like Base64 but if you decoded, you discovered that looks like base64 but is not a real base64.
  
  Here is the
- [Documentation](https://app.swaggerhub.com/apis/ADMIN_150/AguayusShieldEncryption/1.0.0) in case offline or not working you can donwload [AguayusApi.yaml](https://raw.githubusercontent.com/Aguayus/AguayusShieldEncryption/main/AguayusApi.yaml)
+ [Documentation](https://app.swaggerhub.com/apis/ADMIN_150/AguayusShieldEncryption/1.0.0) in case offline or not working you can download [AguayusApi.yaml](https://raw.githubusercontent.com/Aguayus/AguayusShieldEncryption/main/AguayusApi.yaml)
  
  Here is the [Postman Collection](https://raw.githubusercontent.com/Aguayus/AguayusShieldEncryption/main/Aguayus.postman_collection.json)
  
