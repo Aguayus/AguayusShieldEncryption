@@ -7,6 +7,11 @@
 ## Context 
  I am a simple student that I am investigating about how I can protect the actual encryptation systems likes AES or RSA to avoid that the Key used for encryption will be obtained by Brute Force.
  
+ ## How thats work
+ [Aguayus Process](https://github.com/Aguayus/AguayusShieldEncryption/blob/main/Aguayus%20Diagram.png?raw=true)
+ 
+ Ok at know how I can recover to obtaine the original encrypted data an decrypted normaly with the correct key? Sorry but thats is a secret ;)
+ 
  I know that the output looks like Base64 but if you decoded, you discovered that looks like base64 but is not a real base64.
  
  Here is the
