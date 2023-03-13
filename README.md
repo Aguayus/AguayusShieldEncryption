@@ -12,7 +12,7 @@
  
 Okay, but how can I recover the original encrypted data and decrypt it normally with the correct key? Sorry, but that is a secret ;)
  
- I know that the output looks like Base64 but if you decoded, you discovered that looks like base64 but is not a real base64.
+I know that the output looks like Base64, but if you decode it, you'll find out that it's not a real Base64 format
  
  Here is the Api
  [Documentation](https://app.swaggerhub.com/apis/ADMIN_150/AguayusShieldEncryption/1.0.0) in case offline or not working you can download [AguayusApi.yaml](https://raw.githubusercontent.com/Aguayus/AguayusShieldEncryption/main/AguayusApi.yaml)
