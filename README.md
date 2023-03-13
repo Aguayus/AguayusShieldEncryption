@@ -5,7 +5,7 @@
 - Aguayus Shield Encryption is not based on mathematics since mathematics is used to calculate the key*
 
 ## Context 
- I am a simple student that I am investigating about how I can protect the actual encryptation systems likes AES or RSA to avoid that the Key used for encryption will be obtained by Brute Force.
+ I am a student researching how to enhance the security of encryption systems such as AES or RSA, to prevent the key used for encryption from being obtained through brute force.
  
  ## How thats work ?
  ![Aguayus Process](Aguayus%20Diagram.png)
