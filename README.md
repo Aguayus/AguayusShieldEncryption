@@ -2,7 +2,7 @@
 - A process to obfuscate the result of an encryption, to protect from brute force.
 - Aguayus Shield Encryption modify the output of encryption process like AES or RSA, which means that the Key CAN NOT BE RECOVERED BY BRUTE FORCE
 - Aguayus Shield Encryption has random output length, means that cannot be predictable
-- Aguayus Shield Encryption is not based on mathematics since mathematics is used to calculate the key*
+- Aguayus Shield Encryption is not based on mathematics since mathematics is used to calculate the key
 
 ## Context 
  I am a student researching how to enhance the security of encryption systems such as AES or RSA, to prevent the key used for encryption from being obtained through brute force.
