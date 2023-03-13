@@ -4,7 +4,7 @@
 - Aguayus Shield Encryption has random output length that means that cannot be predictable
 - Aguayus Shield Encryption is not based on maths because the maths is the way to calculate the key
 
-##Context 
+## Context 
  I am a simple student that I am investigating about how I can protect the actual encryptation systems likes AES or RSA to avoid that the Key used for encryption will be obtained by Brute Force.
  
  Heres is the
