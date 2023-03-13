@@ -12,8 +12,7 @@
  Here is the
  [Documentation](https://app.swaggerhub.com/apis/ADMIN_150/AguayusShieldEncryption/1.0.0) in case offline or not working you can donwload [AguayusApi.yaml](https://raw.githubusercontent.com/Aguayus/AguayusShieldEncryption/main/AguayusApi.yaml)
  
- Here is the Postman Collection
- [Postman Collection](https://raw.githubusercontent.com/Aguayus/AguayusShieldEncryption/main/Aguayus.postman_collection.json)
+ Here is the [Postman Collection](https://raw.githubusercontent.com/Aguayus/AguayusShieldEncryption/main/Aguayus.postman_collection.json)
  
  
  Please try the challenge that I offer in the Api. 
