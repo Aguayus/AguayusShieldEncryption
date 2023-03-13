@@ -7,8 +7,8 @@
 ## Context 
  I am a simple student that I am investigating about how I can protect the actual encryptation systems likes AES or RSA to avoid that the Key used for encryption will be obtained by Brute Force.
  
- ## How thats work
- [Aguayus Process](Aguayus%20Diagram.png)
+ ## How thats work ?
+ ![Aguayus Process](Aguayus%20Diagram.png)
  
  Ok at know how I can recover to obtaine the original encrypted data an decrypted normaly with the correct key? Sorry but thats is a secret ;)
  
