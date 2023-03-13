@@ -10,7 +10,7 @@
  ## How thats work ?
  ![Aguayus Process](Aguayus%20Diagram.png)
  
- Ok at now how I can recover to obtain the original encrypted data to decrypted normaly with the correct key? Sorry but thats is a secret ;)
+Okay, but how can I recover the original encrypted data and decrypt it normally with the correct key? Sorry, but that is a secret ;)
  
  I know that the output looks like Base64 but if you decoded, you discovered that looks like base64 but is not a real base64.
  
